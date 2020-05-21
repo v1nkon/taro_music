@@ -1,0 +1,51 @@
+.search{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 25rpx 0 10rpx;
+  z-index: 99;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+
+
+  .seach__location{
+    width: 115rpx;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 20rpx;
+    padding-right: 15rpx;
+  }
+  .search__input{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // position: relative;
+    width: 100%;
+    height: 56rpx;
+    border-radius: 8rpx;
+    background: #ededed;
+    box-sizing: border-box;
+    
+    .search__input-input{
+    }
+    .search__input-icon{
+      background: url("http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-2fb94833aa.png") center no-repeat;
+      background-size: 100%;
+      width: 28rpx;
+      height: 28rpx;
+      margin-right: 10rpx;
+    }
+  }
+}
+.search-fixed{
+  position: fixed;
+  top: 0;
+  .search__input{
+    justify-content: flex-start;
+    padding-left: 40rpx;
+  }
+}

@@ -1,0 +1,114 @@
+
+@keyframes circling {
+  0% { 
+      transform: rotate(0deg) 
+  }
+  to { 
+      transform: rotate(1turn) 
+  }
+}
+.page__song{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  .page__song-center{
+    animation: circling 20s infinite linear;
+    animation-play-state: paused;
+  }
+  &.is-play{
+    .page__song-topimg{
+      transform: rotate(0deg);
+    }
+    .page__song-center{
+      animation-play-state: running;
+    }
+  }
+  &.show-lyric{
+    .page__song-top{
+      display: none;
+    }
+  }
+}
+.page__song-bg{
+  transform: scale(1.2);
+  transform-origin: center top;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(30rpx) brightness(0.8);
+  overflow: hidden;
+  z-index: -1;
+  transition: opacity .3s linear;
+  &:after{
+    content: " ";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+.page__song-top{
+  position: relative;
+  width: 592rpx;
+  height: 592rpx;
+  margin: 140rpx auto 0;
+  z-index: 5;
+}
+.page__song-topbox{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &:after{
+    content: " ";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    // z-index: 2;
+    background: url(//s3.music.126.net/m/s/img/disc-ip6.png?69796123ad7cfe95781ea38aac8f2d48) no-repeat;
+    background-size: contain;
+  }
+
+}
+.page__song-topimg{
+  position: absolute;
+  width: 222rpx;
+  height: 366rpx;
+  top: -200rpx;
+  left: 240rpx;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform-origin: 60rpx 60rpx;
+  z-index: 5;
+  transition: all 1.5s;
+  transform: rotate(-20deg);
+}
+.page__song-cover{
+  position: absolute;
+  width: 368rpx;
+  height: 368rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // z-index: 1;
+  overflow: hidden;
+}
+.page__song-center{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: url(//s3.music.126.net/m/s/img/disc_default.png?7c9b3ad…) no-repeat;
+  background-size: contain;
+}
+.page__song-centerimg{
+  width: 100%;
+  height: 100%;
+}
+

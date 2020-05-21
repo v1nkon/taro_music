@@ -1,0 +1,92 @@
+.recommand{
+  margin-top: 20rpx;
+  background: #ffffff;
+}
+.recommand__title{
+  text-align: center;
+  padding: 0 36rpx;
+  vertical-align: middle;
+  display: flex;
+  justify-content: space-between;
+  margin: 26rpx 0;
+  font-size: 26rpx;
+  align-items: center;
+}
+.recommand__title-more{
+  padding: 5rpx;
+  border: 1rpx solid #ddd;
+  font-size: 12rpx;
+  border-radius: 14rpx;
+
+}
+.recommand__title-icon{
+  display: inline-block;
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 5rpx;
+  background: url(../../../images/right.png) no-repeat;
+  background-size: 100% 100%;
+  vertical-align: middle;
+
+}
+.recommand__list{
+  width: 100%;
+  white-space: nowrap;
+}
+.recommand__list-item{
+  display: inline-block;
+  width: 200rpx;
+  margin-left: 30rpx;
+  &:nth-child(1){
+    margin-left: 36rpx;
+  }
+}
+.recommand__list-wrap{
+  width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+.recommand__list-icon{
+  font-size: 20rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 0;
+  font-weight: 700;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  .icon{
+    color: #fff;
+    margin-right: 10rpx;
+  }
+}
+.recommand__list-img{
+  display: block;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+}
+.recommand__list-desc{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 42rpx;
+}
+.recommand__list-price{
+  margin-top: 8rpx;
+  color: #9c3232;
+  font-size: 24rpx;
+}
+.recommand__list-name{
+  font-size: 23rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

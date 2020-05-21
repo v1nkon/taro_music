@@ -1,0 +1,87 @@
+.songslide__wrap{
+  position: relative;
+  top: -27px;
+  background: #fff;
+  border-top-left-radius: 38rpx;
+  border-top-right-radius: 38rpx;
+  &.no-top{
+    top:0;
+  }
+}
+.songslide__header{
+  position: relative;
+  padding: 0 28rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-top-left-radius: 38rpx;
+  border-top-right-radius: 38rpx;
+  width: 100%;
+  &.fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+  .bofang{
+    font-size: 40rpx;
+    color: #000;
+    
+  }
+  .all{
+    color: #000;
+    margin-left: 21rpx;
+  }
+  .count{
+    color: #888888;
+  }
+
+}
+.songslide__item{
+  display: flex;
+  align-items: center;
+}
+.last-index{
+  height: 90rpx;
+}
+.songslide__item-index{
+  font-size: 34rpx;
+  color: #999999;
+  width: 90rpx;
+  text-align: center;
+}
+.songslide__item-info{
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  flex: 1;
+  align-items: center;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+  &.is-cur{
+    view{
+      color: red;
+    }
+  }
+}
+.songslide__item-name{
+  color: #000;
+  font-size: 34rpx;
+}
+.songslide__item-desc{
+  font-size: 24rpx;
+  color: #888888;
+  margin-top: 10rpx;
+
+}
+.songslide__item-more{
+  font-size: 30rpx;
+  margin: 0 10rpx;
+  padding: 15rpx;
+  color: #888888;
+
+}
+.close{
+  position: absolute;
+  right:40rpx;
+}
