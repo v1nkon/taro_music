@@ -15,7 +15,6 @@ interface OwnProps{
   songList:Array<Song>
   isPlay:boolean,
   togglePlay:Function
-  toggleSong:Function
 }
 
 

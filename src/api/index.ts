@@ -46,6 +46,21 @@ export const getSongLyric = (data = {}) => request({
   data
 })
 
+//获取热门搜索
+export const getHotSearch = (data = {}) => request({
+  url:  HOST + '/search/hot/detail',
+  method: 'get',
+  data
+})
+
+//通过关键词搜索
+export const getSearch = (data = {}) => request({
+  url:  HOST + '/search',
+  method: 'get',
+  data
+})
+
+
 //分类详情
 export const getCategoryDetail = (data = {}) => request({
   url:  HOST + '/category/detail',

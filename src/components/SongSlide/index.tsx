@@ -5,27 +5,38 @@ import './index.less'
 
 function SongSlide(props){
 
-  let { isComponent = false, height = 0, closeFunction, toggleSong, song } = props
+  let { isComponent = false, height = 0, closeFunction, toggleSong, song, songList, pushPlayList } = props
 
   let songslide__header = classNames("songslide__header",{
     "fixed":props.fixed
   })
 
-  let jumpToDetail = useCallback( songId =>{
+  let jumpToDetail = useCallback( song =>{
     if( isComponent ){
-      toggleSong(songId)
+      toggleSong(song.id)
     }else{
+      pushPlayList(song)
       Taro.navigateTo({
-        url: `/pages/song/song?songId=${songId}`
+        url: `/pages/song/song?songId=${song.id}`
       })
     }
   }, [isComponent])
 
+  let pushAllIntoPlay = useCallback(() => {
+    Taro.showToast({
+      title:songList.length+'首歌加入播放列表',
+      icon:'none',
+      duration:2000
+    })
+    pushPlayList(songList)
+  }, [songList])
+
+
   return(
     <View className={classNames("songslide__wrap", {'no-top':isComponent})}>
       <View className={songslide__header}>
-        <View className="iconfont icon-Shape bofang"></View>
-        <View className="all">播放全部<Text className="count">(共{props.songList&&props.songList.length}首)</Text></View>
+        <View className="iconfont icon-Shape bofang" onClick={pushAllIntoPlay}></View>
+        <View className="all" onClick={pushAllIntoPlay}>播放全部<Text className="count">(共{props.songList&&props.songList.length}首)</Text></View>
         {
           isComponent && <View onClick={closeFunction} className="close">X</View>
         }
@@ -35,9 +46,9 @@ function SongSlide(props){
         style={{height:isComponent?height + 'rpx': ''}}
       >
         {
-          props.songList && props.songList.map((curSong, index) => {
+          songList && songList.map((curSong, index) => {
             return(
-              <View className="songslide__item" key={curSong.name} onClick={jumpToDetail.bind({}, curSong && curSong.id)}>
+              <View className="songslide__item" key={curSong.name} onClick={jumpToDetail.bind({}, curSong)}>
                 <View className="songslide__item-index">
                   {index+1}
                 </View>

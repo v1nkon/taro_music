@@ -1,5 +1,5 @@
 // import { ComponentClass } from 'react'
-import Taro, { Component, Config, useEffect, useState } from '@tarojs/taro'
+import Taro, { Component, Config, useEffect, useState, useCallback } from '@tarojs/taro'
 import { View, Button, Text, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 
@@ -12,7 +12,7 @@ import Channel from "./Channel"
 import Recommand from "./Recommand"
 import { loadingHomeData } from "@/actions"
 import {getScrollHeight} from "@/utils/index"
-
+import Search from "@/components/Search"
 
 function Home(props){
   let {
@@ -25,7 +25,7 @@ function Home(props){
 
   useEffect( () => {
     loadingHomeData()
-    setScrollHeight(getScrollHeight(80))
+    setScrollHeight(getScrollHeight(120))
     
   }, [])
   
@@ -33,10 +33,12 @@ function Home(props){
 
   return(
     <View className="page__home">
-      <View style={{height:"80rpx"}}>
-        search-component
-      </View>
+      <Search 
+        enableJump
+        autoFocus = {false}
+      />
        <ScrollView
+        className = "page__home-scroll"
         style = {{height: scrollHeight + 'rpx'}}
         scrollY
        >

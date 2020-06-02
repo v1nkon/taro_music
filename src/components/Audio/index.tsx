@@ -19,8 +19,7 @@ import innerAudioContext, { onPlay, offPlay, onEnded, offEnded, audioTogglePlay,
 interface OwnProps{
   song:Song,
   preSong:Song,
-  songList:Array<Song>
-  songListIds:Array<number>
+  playSongList:Array<Song>
   isPlay:boolean,
   togglePlay:Function
   setShowLyric: Function
@@ -36,7 +35,7 @@ interface LYRIC{
 
 
 function Audio(props:OwnProps){
-  let { song, preSong, songList, isPlay, togglePlay, setShowLyric, showLyric } = props
+  let { song, preSong, playSongList, isPlay, togglePlay, setShowLyric, showLyric } = props
 
   let [curLong, setCurLong] = useState(0)
   let [isChanging, setIsChanging] = useState(false)
@@ -189,7 +188,7 @@ function Audio(props:OwnProps){
         >
           <SongSlide
             song={song} 
-            songList = {songList}
+            songList = {playSongList}
             isComponent = {true}
             height={620}
             closeFunction = {toggleMusicList}

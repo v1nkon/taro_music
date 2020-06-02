@@ -12,3 +12,14 @@ export const loadedSongDetail = value => ({type: ActionTypes.GETEDSONGDETAIL, va
 
 export const togglePlay = (value = undefined) => ({type: ActionTypes.TOGGLEPLAY, value})
 export const setShowLyric = (value) => ({type: ActionTypes.SETSHOWLYRIC, value})
+
+
+export const getHotSearch = _ => ({type:ActionTypes.GETHOTSEARCH})
+export const getHotSearched = value => ({type:ActionTypes.GETHOTSEARCHED, value})
+
+export const getSearch = value => ({type:ActionTypes.GETSEARCH, value})
+export const getSearched = value => ({type:ActionTypes.GETSEARCHED, value})
+export const clearSearched = () => ({type:ActionTypes.CLEARSEARCHED})
+
+
+export const pushPlayList = value => ({type:ActionTypes.PUSHPLAYLIST, value})

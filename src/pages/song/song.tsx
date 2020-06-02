@@ -23,6 +23,7 @@ function Song(props){
     preSong,
     songList,
     songListIds,
+    playSongList,
     isPlay = false,
     togglePlay
   } = props
@@ -72,8 +73,7 @@ function Song(props){
       <MyAudio 
         song = {song}
         preSong = {preSong}
-        songList = {songList}
-        songListIds = {songListIds}
+        playSongList = {playSongList}
         togglePlay = {togglePlay}
         isPlay = {isPlay}
         setShowLyric = {setShowLyric}
@@ -92,7 +92,8 @@ Song.config = {
 export default connect(
   state => ({
     ...state.songReducer,
-    ...state.songListReducer
+    ...state.songListReducer,
+    ...state.homeReducer
   }),
   dispatch => ({
     loadingSongDetail: data => {

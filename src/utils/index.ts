@@ -96,3 +96,25 @@ export const isSameSongOrNotExist = ( songId: number ) => {
   } = songReducer
   return !song || ( song && song.id != songId )
 }
+
+// 存储搜索关键字
+export const pushKeywordIntoStorage = (keyword: string) => {
+  const searchKeyWord: Array<string> = Taro.getStorageSync('searchKeyWord') || []
+  console.log('searchKeyWord', searchKeyWord)
+  const index = searchKeyWord.findIndex((item) => item === keyword)
+  if (index !== -1) {
+    searchKeyWord.splice(index, 1)
+  }
+  searchKeyWord.unshift(keyword)
+  Taro.setStorage({ key: 'searchKeyWord', data: searchKeyWord })
+}
+
+// 获取搜索关键字
+export const getKeywordFromStorage = () : Array<string> => {
+  return Taro.getStorageSync('searchKeyWord')
+}
+
+// 清除搜索关键字
+export const clearKeywordInStorage = () => {
+  Taro.removeStorageSync('searchKeyWord')
+}

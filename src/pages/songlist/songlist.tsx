@@ -8,19 +8,19 @@ import './songlist.less'
 
 import SongSlide from "@/components/SongSlide"
 import AudioControl from "@/components/AudioControl"
-import { loadingSongList, togglePlay } from '@/actions'
+import { loadingSongList, togglePlay, pushPlayList } from '@/actions'
 import { formatCount, getScrollHeight, pxToRpx } from "@/utils/index"
 
 
 function SongList(props){
   let {
     loadingSongList,
+    pushPlayList,
+    playSongList,
     songList,
     cover = {},
     song,
     preSong,
-    loadingSongDetail,
-    songListIds,
     isPlay = false,
     togglePlay
   } = props
@@ -80,9 +80,11 @@ function SongList(props){
         song = {song}
         songList = {songList}
         fixed = {fixed}
+        pushPlayList = {pushPlayList}
+        
       />
       {
-        song && <AudioControl song = {song} preSong = {preSong} isPlay = {isPlay} songList = {songList} togglePlay = {togglePlay} toggleSong = {loadingSongDetail}  />
+        song && <AudioControl song = {song} preSong = {preSong} isPlay = {isPlay} songList = {playSongList} togglePlay = {togglePlay}  />
       }
     </ScrollView>
   )
@@ -98,7 +100,8 @@ SongList.options = {
 export default connect(
   state => ({
     ...state.songListReducer,
-    ...state.songReducer
+    ...state.songReducer,
+    ...state.homeReducer
   }),
   dispatch => ({
     loadingSongList: data => {
@@ -106,6 +109,9 @@ export default connect(
     },
     togglePlay : value => {
       dispatch(togglePlay(value))
+    },
+    pushPlayList: value => {
+      dispatch(pushPlayList(value))
     }
   })
   

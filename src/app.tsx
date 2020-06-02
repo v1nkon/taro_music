@@ -27,6 +27,8 @@ class App extends Component {
   config: Config = {
     pages: [
       'pages/home/home',
+      'pages/searchresult/searchresult',
+      'pages/search/search',
       'pages/song/song',
       'pages/songlist/songlist',
     ],

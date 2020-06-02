@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import {put, takeLatest, select} from 'redux-saga/effects'
-import { Song } from '@/constants/interface'
+import { Song, SongInfo } from '@/constants/interface'
 import * as ActionTypes from './actionTypes'
 import * as Actions from './actions'
 import * as Api from '../api'
@@ -104,12 +104,46 @@ function* loadingSongDetail(action){
   }) )
 }
 
+function* loadingHotSearch(action){
+  let res = yield Api.getHotSearch()
+  yield put(Actions.getHotSearched(res.data))
+}
+
+function* loadingSearch(action){
+  let res = yield Api.getSearch(action.value),
+      preSongInfo:SongInfo = yield select(state => state.homeReducer.songInfo),
+      songInfo:SongInfo = {
+        more: false,
+        songs: action.value.clear ?  [] : preSongInfo.songs
+      }
+
+  res.result.songs.map(song =>{
+    let { id, name, album, artists } = song
+    songInfo.songs.push({
+      id,
+      name,
+      songer: artists[0] && artists[0].name,
+      issue: album.name
+    })
+  })
+  if( songInfo.songs.length >= res.result.songCount ){
+    songInfo.more = false
+  }else{
+    songInfo.more = true
+  }
+
+  yield put(Actions.getSearched({
+    songInfo
+  }))
+}
 
 
 export default function* rootSaga(){
   yield takeLatest(ActionTypes.GETHOMEDATA, loadingHomeData)
   yield takeLatest(ActionTypes.GETSONGLIST, loadingSongList)
   yield takeLatest(ActionTypes.GETSONGDETAIL, loadingSongDetail)
+  yield takeLatest(ActionTypes.GETHOTSEARCH, loadingHotSearch)
+  yield takeLatest(ActionTypes.GETSEARCH, loadingSearch)
 
 
 }

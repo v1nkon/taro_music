@@ -1,28 +1,37 @@
-import Taro, { Component, useState, Config, render } from '@tarojs/taro'
-import { View, Input, SwiperItem, Image, Label } from '@tarojs/components'
+import Taro, { Component, useState, Config, render, useCallback } from '@tarojs/taro'
+import { View, Input, SwiperItem, Image, Label, Text } from '@tarojs/components'
 import classNames from 'classnames'
 import './index.less'
 
 interface OwnProps {
-  isFixed:boolean,
   count?: number
+  keyword?:string
+  inputChange?:(value: any) => void
+  search?:(value: any) => void
+  enableJump?:boolean
+  autoFocus?: boolean
 }
 
 export default function Search(props:OwnProps){
+  let { keyword = '', inputChange, search, enableJump = false, autoFocus = true } = props
+  let [isFocus, setIsFocus] = useState(false)
 
+  let jumpToSearch = useCallback( ( ) => {
+    enableJump && Taro.navigateTo({
+      url: `/pages/search/search`
+    })
+  }, [enableJump] ) 
 
-  let searchClass = classNames('search', {
-    'search-fixed': props.isFixed
-  })
   return (
-    <View className={searchClass}>
-      {
-        props.isFixed && <View className="seach__location">西藏自治区......</View>
-      }
-      <View className="search__input">
-        <Label className="search__input-icon"></Label>
-        <View className="search__input-input">商品搜索,共{props.count||0}件好物</View> 
+    <View onClick={ jumpToSearch } className={ classNames("components__search", {'is-focus': !enableJump && (keyword.length !== 0 || isFocus) })}>
+      <View className="search__input-box">
+        <View className="search__bar">
+          <Text className="search__input-icon"></Text>
+          <Text className="search__input-label">搜索</Text>
+          <Input value={keyword} disabled ={enableJump} autoFocus = {autoFocus} onInput= {inputChange} className="search__input-input" onFocus={setIsFocus.bind({}, true)} onBlur={setIsFocus.bind({}, false)} ></Input>
+        </View>
       </View>
+      <View onClick={search} className="search__input-btn">搜一下</View>
     </View>
   )
 

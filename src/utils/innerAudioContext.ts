@@ -31,15 +31,15 @@ export let audioTogglePlay = () => {
 }
 
 export let audioToggleSong = (index = 1) => {
-  let { songReducer, songListReducer } = store.getState()
+  let { songReducer, songListReducer, homeReducer } = store.getState()
   
   let {
     song,
   } = songReducer
 
   let {
-    songListIds
-  } = songListReducer
+    playSongListIds
+  } = homeReducer
 
   audioTogglePlay()
   innerAudioContext.stop()
@@ -47,14 +47,14 @@ export let audioToggleSong = (index = 1) => {
   index = isNaN(index) ? 1 : index
   let nextId
   if( index === 1 || index === -1 ){
-    let songIndex = songListIds.indexOf(song.id) + index,
-      totalLength = songListIds.length
+    let songIndex = playSongListIds.indexOf(song.id) + index,
+      totalLength = playSongListIds.length
     if( songIndex < 0 ){
       songIndex = songIndex + totalLength
-    }else if(songIndex > totalLength){
+    }else if(songIndex >= totalLength){
       songIndex = songIndex - totalLength
     }
-    nextId = songListIds.slice(songIndex, songIndex + 1)[0]
+    nextId = playSongListIds.slice(songIndex, songIndex + 1)[0]
   }else{
     nextId = index
   }
