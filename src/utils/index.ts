@@ -89,7 +89,7 @@ export const isSameSong = (song:Song, preSong:Song) => {
 }
 
 //判断是否是请求新歌
-export const isSameSongOrNotExist = ( songId: number ) => {
+export const notSameSongOrNotExist = ( songId: number ) => {
   let { songReducer } = store.getState()
   let {
     song

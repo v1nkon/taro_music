@@ -8,13 +8,6 @@ const innerAudioContext = Taro.createInnerAudioContext()
 innerAudioContext.autoplay = true
 
 
-
-
-// innerAudioContext.onPlay(() => {
-//   let duration = innerAudioContext.duration;
-//   console.log('开始播放')
-//   console.log(duration)
-// })
 innerAudioContext.onCanplay(() => {
   let duration = innerAudioContext.duration;
   console.log('可以播放咯')

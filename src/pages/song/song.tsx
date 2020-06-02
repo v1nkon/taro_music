@@ -6,7 +6,7 @@ import classname  from "classnames"
 
 
 import './song.less'
-import { isSameSongOrNotExist } from '@/utils/index'
+import { notSameSongOrNotExist } from '@/utils/index'
 import { loadingSongDetail, togglePlay } from "@/actions"
 
 
@@ -34,7 +34,7 @@ function Song(props){
     console.log('song-------song')
     // loadingSongDetail(1446522620)
     //如果当前歌曲不存在 且是请求新歌的时候  需要请求
-    if( isSameSongOrNotExist(this.$router.params.songId) ){
+    if( notSameSongOrNotExist(this.$router.params.songId) ){
       loadingSongDetail(this.$router.params.songId )
     }
   }, [])
